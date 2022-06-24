@@ -4,14 +4,15 @@ import { Switch, Route } from "react-router-dom";
 import './App.css';
 
 import HomePage from './components/HomePage';
-import NavBar from './components/NavBar';
 import TasksPage from './components/TasksPage';
 import MemoriesPage from './components/MemoriesPage';
-import TaskCard from './components/TaskCard';
+
 
 
 
 function App() {
+
+  
 
   let currentPage;
   if (window.location.pathname=== "/tasks") {
@@ -29,9 +30,7 @@ function App() {
   }
   
   return (
-    <div>
-      {/* <NavBar /> */}
-      {/* <HomePage /> */}
+     <div>
       {currentPage}
       
     </div>

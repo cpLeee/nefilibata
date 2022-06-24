@@ -20,11 +20,13 @@ function MainPage() {
               <h2 className='mainpage-title-definition'>
                   (n) “Cloud Walker”; One who lives in the clouds of their own imagination or dreams.
               </h2>
-
-            
+        
+     
+       
              <button className='mainpage-task-button'>
               Let's Get This Week Started ❤️ </button>
-                 
+        
+         
              <button className='mainpage-memory-button'>
               My Memory Bank ☁️ </button>
           </div>

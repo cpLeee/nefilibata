@@ -37,6 +37,13 @@ function handleUpdateMemory(updatedMemory) {
   setMemories(updatedMemoriesArray);
 }
 
+// how does it know that my user is the one posting? 
+const displayId= memories.map((memory) => {
+  return memory.user_id //this outputs ID 
+}); 
+
+
+
 const displayedMemories = memories.filter((memory) => {
   return memory.memory
 });
@@ -49,7 +56,11 @@ const displayedMemories = memories.filter((memory) => {
       <br></br>
       <br></br>
 
-      <MemoriesForm onAddMemory={handleAddMemory} />
+      <MemoriesForm
+      onAddMemory={handleAddMemory} 
+      memoryId= {displayId}
+
+      />
 
       <div className="memoriespage-text">
         <MemoriesList

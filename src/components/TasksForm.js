@@ -1,5 +1,4 @@
-import { toBeInTheDocument } from '@testing-library/jest-dom/dist/matchers';
-import React, {useState} from 'react'
+import React, {useState, useEffect} from 'react'
 
 function TasksForm({onAddTask}) {
 
@@ -8,6 +7,15 @@ const initialTaskData= {
 }
 
 const [task, setTask]= useState(""); 
+const [user, setUser]= useState(""); 
+
+useEffect(() => {
+    fetch("http://localhost:9292/users")
+        .then((resp) => resp.json())
+        .then((myUser) => {
+            setUser(myUser[0]);
+        });
+  }, []);
 
 function handleSubmit(event) {
     event.preventDefault(); 
@@ -20,13 +28,15 @@ function handleSubmit(event) {
 
       body: JSON.stringify({ 
         task: task,
+        day: "Today", 
+        user_id: user.id
       
-        
       }),
     })
     .then((resp) => resp.json())
     .then((newTask) => onAddTask(newTask))
   }
+
 
   return (
     <form onSubmit= {handleSubmit}>
