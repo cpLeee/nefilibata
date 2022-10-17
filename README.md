@@ -1,7 +1,7 @@
 ## What is Nefilibata 
 “Cloud Walker”; One who lives in the clouds of their own imagination or dreams.
 
-A digital journal application that allows the user to add/ edit/ delete daily tasks they'd like to complete for the day and create a memory bank to remember all of life's little moments. 
+A basic digital journal application that allows the user to add/ edit/ delete daily tasks they'd like to complete for the day and create a memory bank to remember all of life's little moments. 
 
 ## Nefilibata
 - Nefilibata: An app built on Reactjs and Ruby on Rails by Leah Chen.
