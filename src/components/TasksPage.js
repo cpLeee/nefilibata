@@ -1,51 +1,51 @@
-import React, {useState, useEffect} from 'react'; 
+import React, { useState, useEffect } from 'react';
 
 import TasksForm from './TasksForm';
-import TasksList from './TasksList'; 
+import TasksList from './TasksList';
 import NavBar from './NavBar';
 
 function TasksPage() {
 
   const [tasks, setTasks] = useState([]);
 
-    useEffect(() => {
-        fetch("http://localhost:9292/tasks")
-            .then((resp) => resp.json())
-            .then((tasksArray) => {
-                setTasks(tasksArray);
-            });
-    }, []);
-
-    function handleAddTask(newTask) {
-      const updatedTasksArray = [...tasks, newTask];
-      setTasks(updatedTasksArray);
-    }
-    
-    function handleDeleteTask(id) {
-      const updatedTasksArray = tasks.filter((task) => task.id !== id);
-      setTasks(updatedTasksArray);
-    }
-    
-    function handleUpdateTask(updatedTask) {
-      const updatedTasksArray = tasks.map((task) => {
-        if (task.id === updatedTask.id) {
-          return updatedTask;
-        } else {
-          return task;
-        }
+  useEffect(() => {
+    fetch("http://localhost:9292/tasks")
+      .then((resp) => resp.json())
+      .then((tasksArray) => {
+        setTasks(tasksArray);
       });
-      setTasks(updatedTasksArray);
-    }
-    
-    const displayedTasks = tasks.filter((task) => {
-      return task.task
+  }, []);
+
+  function handleAddTask(newTask) {
+    const updatedTasksArray = [...tasks, newTask];
+    setTasks(updatedTasksArray);
+  }
+
+  function handleDeleteTask(id) {
+    const updatedTasksArray = tasks.filter((task) => task.id !== id);
+    setTasks(updatedTasksArray);
+  }
+
+  function handleUpdateTask(updatedTask) {
+    const updatedTasksArray = tasks.map((task) => {
+      if (task.id === updatedTask.id) {
+        return updatedTask;
+      } else {
+        return task;
+      }
     });
+    setTasks(updatedTasksArray);
+  }
+
+  const displayedTasks = tasks.filter((task) => {
+    return task.task
+  });
 
 
-    return (
-      <>
-        <NavBar />
-      
+  return (
+    <>
+      <NavBar />
+
       <br></br>
       <br></br>
 
@@ -54,15 +54,15 @@ function TasksPage() {
       <hr></hr>
 
       <TasksForm
-      onAddTask= {handleAddTask} />
+        onAddTask={handleAddTask} />
 
-      <TasksList 
-        tasks= {displayedTasks}
-        onDeleteTask= {handleDeleteTask}
-        onUpdateTask= {handleUpdateTask}
+      <TasksList
+        tasks={displayedTasks}
+        onDeleteTask={handleDeleteTask}
+        onUpdateTask={handleUpdateTask}
       />
     </>
-    )
+  )
 }
 
 export default TasksPage;

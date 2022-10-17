@@ -1,10 +1,13 @@
 import React from 'react'
+import {Link} from 'react-router-dom'
 
 function Login() {
   return (
     <nav>
+      <Link exact to="/">
     <button className='mainpage-login-button'>
-    Leah Chen</button>
+    Home</button>
+    </Link>
     </nav>
   )
 }

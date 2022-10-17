@@ -1,9 +1,9 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
 function MemoryCard({ memoryList, onDeleteMemory, onUpdateMemory }) {
-  const {id, memory, user_id} = memoryList; 
+  const { id, memory, user_id } = memoryList;
 
-  const [updatedMemory, setUpdatedMemory]= useState(""); 
+  const [updatedMemory, setUpdatedMemory] = useState("");
 
 
   function handleDeleteClick() {
@@ -16,7 +16,7 @@ function MemoryCard({ memoryList, onDeleteMemory, onUpdateMemory }) {
 
   function handleMemorySubmit(e) {
     e.preventDefault();
-    e.target.reset(); 
+    e.target.reset();
     fetch(`http://localhost:9292/memories/${id}`, {
       method: "PATCH",
       headers: {
@@ -29,7 +29,7 @@ function MemoryCard({ memoryList, onDeleteMemory, onUpdateMemory }) {
         onUpdateMemory(updatedMemory);
       });
   }
-     
+
 
   return (
     <div className="memory-item">
@@ -42,12 +42,15 @@ function MemoryCard({ memoryList, onDeleteMemory, onUpdateMemory }) {
 
       <form onSubmit={handleMemorySubmit}>
         <input
+        className='memorycard-scratch-that'
           type="text"
           placeholder="Scratch That..."
           // value={updatedMemory}
           onChange={(e) => setUpdatedMemory(e.target.value)}
         />
-        <button type="submit">Update Memory</button>
+        <button 
+        className='memorycard-button'
+        type="submit">Update Memory</button>
       </form>
 
     </div>

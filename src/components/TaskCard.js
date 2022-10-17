@@ -1,8 +1,8 @@
-import React, {useState} from 'react'
+import React, { useState } from 'react'
 
-function TaskCard({taskList, onDeleteTask, onUpdateTask}) {
-  const {id, day, task, user_id}= taskList; 
-  const [updatedTask, setUpdatedTask]= useState("");
+function TaskCard({ taskList, onDeleteTask, onUpdateTask }) {
+  const { id, day, task, user_id } = taskList;
+  const [updatedTask, setUpdatedTask] = useState("");
 
   function handleTaskDeleteClick() {
     fetch(`http://localhost:9292/tasks/${id}`, {
@@ -14,7 +14,7 @@ function TaskCard({taskList, onDeleteTask, onUpdateTask}) {
 
   function handleTaskSubmit(e) {
     e.preventDefault();
-    e.target.reset(); 
+    e.target.reset();
     fetch(`http://localhost:9292/tasks/${id}`, {
       method: "PATCH",
       headers: {
@@ -28,25 +28,26 @@ function TaskCard({taskList, onDeleteTask, onUpdateTask}) {
       });
   }
 
-{/* <input type= "checkbox"></input> */}
+  {/* <input type= "checkbox"></input> */ }
   return (
     <div className="task-item">
       <label className='tasks' key={task.id} user_id={task.user_id}>
         {task}
       </label>
       <label className="task-trash" onClick={handleTaskDeleteClick}>
-      ✅
+        ✅
       </label>
 
       <form onSubmit={handleTaskSubmit}>
         <input
+          className='tasklist-input'
           type="text"
           placeholder="Scratch That..."
           // value={updatedMemory}
           onChange={(e) => setUpdatedTask(e.target.value)}
         />
         <button className="taskcard-button"
-        type="submit">✏️</button>
+          type="submit">✏️</button>
       </form>
 
     </div>

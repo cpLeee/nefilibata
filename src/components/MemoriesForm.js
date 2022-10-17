@@ -1,30 +1,30 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 
-function MemoriesForm({onAddMemory, memoryId}) {
+function MemoriesForm({ onAddMemory, memoryId }) {
 
   // const initialMemoryData = {
-	// 	name: "",
+  // 	name: "",
   //   user_id: ""
-	// }
-  const [memory, setMemory]= useState("")
-  const [user, setUser]= useState("")
+  // }
+  const [memory, setMemory] = useState("")
+  const [user, setUser] = useState("")
   // const handleChange= (event) => {
   //   const {id, value} = event.target; 
   //   setMemory({...memory, [id]: memoryId}); 
   // }; 
-//GETS memory where user ID is 2 
-useEffect(() => {
-  fetch("http://localhost:9292/users")
+  //GETS memory where user ID is 2 
+  useEffect(() => {
+    fetch("http://localhost:9292/users")
       .then((resp) => resp.json())
       .then((myUser) => {
-          setUser(myUser[0]);
+        setUser(myUser[0]);
       });
-}, []);
+  }, []);
 
-console.log(user.id)
+  console.log(user.id)
 
   function handleSubmit(event) {
-    event.preventDefault(); 
+    event.preventDefault();
     event.target.reset();
     fetch("http://localhost:9292/memories", {
       method: "POST",
@@ -32,14 +32,14 @@ console.log(user.id)
         "Content-Type": "application/json"
       },
 
-      body: JSON.stringify({ 
+      body: JSON.stringify({
         memory: memory,
         user_id: user.id //this should be passed down from above 
       }
       ),
     })
-    .then((resp) => resp.json())
-    .then((newMemory) => onAddMemory(newMemory))
+      .then((resp) => resp.json())
+      .then((newMemory) => onAddMemory(newMemory))
   }
 
   return (
